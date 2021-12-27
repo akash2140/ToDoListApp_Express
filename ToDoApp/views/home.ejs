@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> <%= title %></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+</head>
+<body>
+    <div id="header">
+        <h1 id="main-heading"><i class="fas fa-clone"></i> ToDo List Application</h1>
+    </div>
+
+    <div id="form-content">
+        <form action="/create-task" method="post">
+            <label for="description" class="labels">Description</label>
+            <input type="text" name="description" placeholder="Enter the task:" required><br>
+            
+            
+            <label for="category" class="labels">Category</label>
+            <select name="category" id="category"  required>
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="School">School</option>
+                <option value="Cleaning">Cleaning</option>
+            </select><br>   
+
+
+            <label for="duedate" class="labels">Due Date</label>
+            <input type="date" name="duedate" required  value="" min="2021-12-27" max="2030-12-31" placeholder="Enter the date:"><br>
+            
+            <button id="btn-add" type="submit">Add Task</button>
+        </form>
+    </div>
+
+    <br>
+    <div id="tasks-content">
+        <h1>Tasks List: </h1>
+        <ol>
+            <% for(let i of tasks_list){ %>
+                <li>
+                    <div class="card bg-secondary text-white" style="width: 40em; height :15rem;">        
+                        <div class="card-body">     
+                            <p> <h3 style="color:lightgreen;display: inline;">Task :</h3> <%= i.description %></p>
+                            <p> <h3 style="color:lightgreen;display: inline;">Category: </h3> <%= i.category %></p>
+                            <p style="color:lightgrey"> <i class=" fas fa-calendar-check"></i> <%= i.duedate %>  <a href="/delete-task/?id=<%= i._id %>" id="btn-delete"><i class="fas fa-window-close"></i></a></p>
+                        </div>
+                    </div>
+                </li>
+                <br>
+            <%  } %> 
+        </ol>
+    </div>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/8607139a80.js" crossorigin="anonymous"></script>
+    <script src="/js/home.js"></script>
+</body>
+</html>
